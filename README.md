@@ -8,8 +8,7 @@ apt-get update
 apt-get install -y apache2
 apt-get install -y php libapache2-mod-php php-mysql
 cp /vagrant/index.php /var/www/html
-cd /var/www/html
-rm index.html
+
 ```
 
 - Instalamos las utilidadesde debconf
@@ -18,7 +17,7 @@ apt-get install -y debconf-utils
 ```
 - Asignamos una contraseña al usuario root de MYSQL
 ```
-DB_ROOT_PASSWD=contraseña
+DB_ROOT_PASSWD=password
 debconf-set-selections <<< "mysql-server mysql-server/root_password password $DB_ROOT_PASSWD"
 debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $DB_ROOT_PASSWD"
 ```
@@ -32,6 +31,10 @@ apt-get install -y mysql-server
 apt-get install -y git
 cd /tmp
 git clone https://github.com/josejuansanchez/iaw-practica-lamp.git
+```
+- Eliminamos el index.html para que nos muestre el index.php
+```
+rm /var/www/html/index.html 
 ```
 - movemos los archivos web del repositorio a la carpeta html para que la muestre al web y le cambiamos los permisos
 ```
