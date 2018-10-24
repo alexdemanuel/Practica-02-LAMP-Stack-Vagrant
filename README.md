@@ -1,4 +1,22 @@
-# Practica-02-LAMP-Stack
+# Practica-02-LAMP-Stack-Vagrant
+# Creacion de la maquina con vagrant
+ - Inicializamos vagrant que nos creara un archiva vagrantfile
+ ```
+ vagrant init
+ ```
+- Accedemos al archivo vagrantfile y ponemos lo siguiente en su interior
+```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/bionic64" #Sistema que vamos a utilizar
+  config.vm.network "private_network", ip: "192.168.33.10" #Direccion IP y tipo de red
+  config.vm.provision "shell", path: "script.sh" #Las utilidades que se van a instalar por defecto en la maquina     
+end
+```
+# Creacion de archivo script.sh 
+ **Donde meteremos los comandos para instalar las utilidades que necesitemos**
+
 - Actualizamos los repositorios
 ```
 apt-get update
@@ -50,4 +68,4 @@ rm /var/www/html/index.html
 cd /tmp/iaw-practica-lamp/db
 mysql -u root -p$DB_ROOT_PASSWD < database.sql 
 ```
-**$DB_ROOT_PASSW es para entrar a mysql la variable esta especificada arriba**
+**$DB_ROOT_PASSW es para entrar a mysql la variable esta especificada arriba donde se indica cual sera la contraseña del usuario root**
